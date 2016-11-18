@@ -201,7 +201,7 @@ impl ExpressionInner {
 }
 
 fn exec_argv(argv: &[OsString], context: IoContext) -> io::Result<ExitStatus> {
-    let mut command = Command::new(Path::new(&argv[0]).canonicalize().unwrap());
+    let mut command = Command::new(Path::new(&argv[0]));
     command.args(&argv[1..]);
     // TODO: Avoid unnecessary dup'ing here.
     command.stdin(try!(context.stdin.into_stdio()));
